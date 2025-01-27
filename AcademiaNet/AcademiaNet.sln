@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaNet.Backend", "AcademiaNet.Backend\AcademiaNet.Backend.csproj", "{B985F915-B1B0-4540-BDF2-C6C746D2609D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademiaNet.Backend", "AcademiaNet.Backend\AcademiaNet.Backend.csproj", "{B985F915-B1B0-4540-BDF2-C6C746D2609D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaNet.Frontend", "AcademiaNet.Frontend\AcademiaNet.Frontend.csproj", "{A809593F-A9D2-4CFD-9803-A4B9BE4CB114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademiaNet.Frontend", "AcademiaNet.Frontend\AcademiaNet.Frontend.csproj", "{A809593F-A9D2-4CFD-9803-A4B9BE4CB114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaNet.Shared", "AcademiaNet.Shared\AcademiaNet.Shared.csproj", "{09AB885E-1010-4FDE-90DF-94569F712014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademiaNet.Shared", "AcademiaNet.Shared\AcademiaNet.Shared.csproj", "{09AB885E-1010-4FDE-90DF-94569F712014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaNet.Tests", "AcademiaNet.Tests\AcademiaNet.Tests.csproj", "{C2342A18-66EF-4688-B47E-DA8F6131943F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademiaNet.Tests", "AcademiaNet.Tests\AcademiaNet.Tests.csproj", "{C2342A18-66EF-4688-B47E-DA8F6131943F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
