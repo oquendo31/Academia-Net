@@ -1,0 +1,14 @@
+﻿@page "/institutions/edit/{Id:int}"
+
+<h3>@Localizer["Edit"] @Localizer["Institution"]</h3>
+
+@if (institution is null)
+{
+    <Loading />
+}
+else
+{
+    <InstitutionForm @ref="institutionForm" Institution="institution" OnValidSubmit="EditAsync" ReturnAction="Return" />
+}
+
+

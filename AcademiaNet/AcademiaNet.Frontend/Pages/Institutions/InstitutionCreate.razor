@@ -1,0 +1,8 @@
+﻿@page "/institutions/create"
+
+<h3>@Localizer["Create"] @Localizer["Institution"]</h3>
+
+<InstitutionForm @ref="institutionForm" Institution="institution" OnValidSubmit="CreateAsync" ReturnAction="Return" />
+
+
+
