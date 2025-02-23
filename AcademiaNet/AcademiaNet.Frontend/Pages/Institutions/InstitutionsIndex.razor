@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>@Localizer["Institution"]</th>
+                    <th># @Localizer["AcademicPrograms"]</th>
                     <th></th>
                 </tr>
             </thead>
@@ -23,6 +24,10 @@
                         <td>
                             @institution.Name
                         </td>
+                        <td>
+                            @institution.AcademicProgramsCount
+                        </td>
+
                         <td>
                             <a class="btn btn-warning" href="/institutions/edit/@institution.InstitutionID">@Localizer["Edit"]</a>
                             <button class="btn btn-danger" @onclick=@(() => DeleteAsync(institution))>@Localizer["Delete"]</button>

@@ -204,4 +204,7 @@
   <data name="AcademicProgram" xml:space="preserve">
     <value>Programa académico </value>
   </data>
+  <data name="AcademicPrograms" xml:space="preserve">
+    <value>Programas académicos</value>
+  </data>
 </root>

@@ -79,6 +79,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academics Programs.
+        /// </summary>
+        public static string AcademicPrograms {
+            get {
+                return ResourceManager.GetString("AcademicPrograms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
