@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AcademiaNet.Shared.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,12 +13,14 @@ public class AcademicProgram
     [Key]
     public int AcademicProgramID { get; set; }
 
-    [MaxLength(100)]
-    [Required]
+    [Display(Name = "AcademicProgram", ResourceType = typeof(Literals))]
+    [MaxLength(100, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; } = null!;
 
-    [MaxLength(100)]
-    [Required]
+    [Display(Name = "AcademicProgram", ResourceType = typeof(Literals))]
+    [MaxLength(100, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Category { get; set; } = null!;
 
     [Required]

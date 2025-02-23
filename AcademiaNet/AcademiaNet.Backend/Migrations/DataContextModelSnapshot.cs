@@ -49,7 +49,7 @@ namespace AcademiaNet.Backend.Migrations
                     b.HasIndex("AcademicProgramID", "Name")
                         .IsUnique();
 
-                    b.ToTable("AcademicPrograms");
+                    b.ToTable("AcademicPrograms", (string)null);
                 });
 
             modelBuilder.Entity("AcademiaNet.Shared.Entites.Institution", b =>
@@ -78,7 +78,7 @@ namespace AcademiaNet.Backend.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Institutions");
+                    b.ToTable("Institutions", (string)null);
                 });
 
             modelBuilder.Entity("AcademiaNet.Shared.Entites.AcademicProgram", b =>

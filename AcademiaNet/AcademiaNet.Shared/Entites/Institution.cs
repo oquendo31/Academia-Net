@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AcademiaNet.Shared.Resources;
+using System.ComponentModel.DataAnnotations;
 
 namespace AcademiaNet.Shared.Entites;
 
@@ -6,8 +7,9 @@ public class Institution
 {
     public int InstitutionID { get; set; }
 
-    [MaxLength(100)]
-    [Required]
+    [Display(Name = "Institution", ResourceType = typeof(Literals))]
+    [MaxLength(100, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; } = null!;
 
     [MaxLength(100)]
