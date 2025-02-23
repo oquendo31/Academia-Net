@@ -15,4 +15,7 @@ public class Institution
 
     [MaxLength(100)]
     public string? Description { get; set; } // Permitir null
+
+    public ICollection<AcademicProgram>? AcademicPrograms { get; set; }
+    public int AcademicProgramsCount => AcademicPrograms == null ? 0 : AcademicPrograms.Count;
 }
