@@ -34,7 +34,7 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
     }
 
     /// <summary>
-    /// prueba commit Juan felipe 15406719
+    /// prueba commit Juan felipe
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
