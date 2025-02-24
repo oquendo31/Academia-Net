@@ -187,4 +187,10 @@
   <data name="AcademicPrograms" xml:space="preserve">
     <value>Academics Programs</value>
   </data>
+  <data name="ERR004" xml:space="preserve">
+    <value>The country Id is not valid.</value>
+  </data>
+  <data name="ERR005" xml:space="preserve">
+    <value>The team Id is not valid.</value>
+  </data>
 </root>

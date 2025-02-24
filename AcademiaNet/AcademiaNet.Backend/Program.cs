@@ -1,4 +1,5 @@
 using AcademiaNet.Backend.Data;
+using AcademiaNet.Backend.Helpers;
 using AcademiaNet.Backend.Repositories.Implementations;
 using AcademiaNet.Backend.Repositories.Interfaces;
 using AcademiaNet.Backend.UnitsOfWork.Implementations;
@@ -18,11 +19,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
 builder.Services.AddTransient<SeedDb>();
 
+builder.Services.AddScoped<IFileStorage, FileStorage>();
+
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddScoped(typeof(IInstitutionsRepository), typeof(InstitutionsRepository));
 builder.Services.AddScoped(typeof(IInstitutionsUnitOfWork), typeof(InstitutionsUnitOfWork));
+
+builder.Services.AddScoped<IAcademicprogramsRepository, AcademicProgramRepository>();
+builder.Services.AddScoped<IAcademicProgramsUnitOfWorks, AcademicProgramsUnitOfWork>();
 
 var app = builder.Build();
 SeedData(app);

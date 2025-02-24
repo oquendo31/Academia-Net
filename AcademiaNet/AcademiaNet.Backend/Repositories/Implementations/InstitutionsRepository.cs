@@ -1,4 +1,5 @@
 ﻿using AcademiaNet.Backend.Data;
+using AcademiaNet.Backend.Helpers;
 using AcademiaNet.Backend.Repositories.Interfaces;
 using AcademiaNet.Shared.Entites;
 using AcademiaNet.Shared.Responses;
@@ -14,10 +15,17 @@ namespace AcademiaNet.Backend.Repositories.Implementations;
 public class InstitutionsRepository : GenericRepository<Institution>, IInstitutionsRepository
 {
     private readonly DataContext _context;
+    private readonly IFileStorage _fileStorage;
 
-    public InstitutionsRepository(DataContext context) : base(context)
+    public InstitutionsRepository(DataContext context, IFileStorage fileStorage) : base(context)
     {
         _context = context;
+        _fileStorage = fileStorage;
+    }
+
+    public override Task<ActionResponse<Institution>> AddAsync(Institution entity)
+    {
+        return base.AddAsync(entity);
     }
 
     /// <summary>
