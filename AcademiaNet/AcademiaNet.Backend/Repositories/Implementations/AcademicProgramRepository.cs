@@ -79,8 +79,9 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
 
         var academicprogram = new AcademicProgram
         {
-            Institution = institution,
+            InstitutionID = academicProgramDTO.InstitutionID,
             Name = academicProgramDTO.Name,
+            Category = academicProgramDTO.Category
         };
 
         //if (!string.IsNullOrEmpty(teamDTO.Image))

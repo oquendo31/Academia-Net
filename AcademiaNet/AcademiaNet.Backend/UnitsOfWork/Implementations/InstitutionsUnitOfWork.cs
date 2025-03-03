@@ -1,6 +1,7 @@
 ﻿using AcademiaNet.Backend.Repositories.Implementations;
 using AcademiaNet.Backend.Repositories.Interfaces;
 using AcademiaNet.Backend.UnitsOfWork.Interfaces;
+using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Entites;
 using AcademiaNet.Shared.Responses;
 using System.Diagnostics.Metrics;
@@ -18,6 +19,13 @@ public class InstitutionsUnitOfWork : GenericUnitOfWork<Institution>, IInstituti
     {
         _institutionsRepository = institutionsRepository;
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<Institution>> AddAsync(InstitutionDTO institutionDTO) => await _institutionsRepository.AddAsync(institutionDTO);
 
     /// <summary>
     ///

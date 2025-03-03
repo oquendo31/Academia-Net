@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>@Localizer["Institution"]</th>
+                    <th>@Localizer["Photo"]</th>
                     <th># @Localizer["AcademicPrograms"]</th>
                     <th></th>
                 </tr>
@@ -21,12 +22,9 @@
                 @foreach (var institution in Institutions!)
                 {
                     <tr>
-                        <td>
-                            @institution.Name
-                        </td>
-                        <td>
-                            @institution.AcademicProgramsCount
-                        </td>
+                        <td> @institution.Name </td>
+                        <td><img src="@institution.ImageFull" style="width:90px;height:60px;" /></td>
+                        <td> @institution.AcademicProgramsCount</td>
 
                         <td>
                             <a class="btn btn-warning" href="/institutions/edit/@institution.InstitutionID">@Localizer["Edit"]</a>

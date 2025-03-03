@@ -1,4 +1,5 @@
-﻿using AcademiaNet.Shared.Entites;
+﻿using AcademiaNet.Shared.DTOs;
+using AcademiaNet.Shared.Entites;
 using AcademiaNet.Shared.Responses;
 using System.Diagnostics.Metrics;
 
@@ -24,4 +25,11 @@ public interface IInstitutionsUnitOfWork
     /// </summary>
     /// <returns></returns>
     Task<IEnumerable<Institution>> GetComboAsync();
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    Task<ActionResponse<Institution>> AddAsync(InstitutionDTO institutionDTO);
 }

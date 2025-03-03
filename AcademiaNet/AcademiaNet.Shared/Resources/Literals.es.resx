@@ -213,4 +213,22 @@
   <data name="ERR005" xml:space="preserve">
     <value>El código del equipo no es válido.</value>
   </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Seleccione un archivo..</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar…</value>
+  </data>
+  <data name="SelectAnInstitution" xml:space="preserve">
+    <value>-- Selecciona una Institución ---</value>
+  </data>
+  <data name="EnterCategory" xml:space="preserve">
+    <value> Ingrese la categoría</value>
+  </data>
+  <data name="EnterAcademicProgramName" xml:space="preserve">
+    <value>Ingrese el nombre del programa académico</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
 </root>

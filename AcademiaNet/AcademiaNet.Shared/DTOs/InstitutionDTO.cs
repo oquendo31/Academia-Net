@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AcademiaNet.Shared.DTOs;
 
-internal class InstitutionDTO
+public class InstitutionDTO
 {
     [Key]
     public int InstitutionID { get; set; } // Identificador único de la institución

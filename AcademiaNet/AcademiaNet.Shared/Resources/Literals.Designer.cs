@@ -97,6 +97,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmation.
         /// </summary>
         public static string Confirmation {
@@ -138,6 +147,24 @@ namespace AcademiaNet.Shared.Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the academic program name.
+        /// </summary>
+        public static string EnterAcademicProgramName {
+            get {
+                return ResourceManager.GetString("EnterAcademicProgramName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the category.
+        /// </summary>
+        public static string EnterCategory {
+            get {
+                return ResourceManager.GetString("EnterCategory", resourceCulture);
             }
         }
         
@@ -318,6 +345,33 @@ namespace AcademiaNet.Shared.Resources {
         public static string SaveChanges {
             get {
                 return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search….
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -- Select an Institution ---.
+        /// </summary>
+        public static string SelectAnInstitution {
+            get {
+                return ResourceManager.GetString("SelectAnInstitution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a File… .
+        /// </summary>
+        public static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
             }
         }
         

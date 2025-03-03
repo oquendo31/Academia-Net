@@ -1,0 +1,52 @@
+﻿@page "/academicPrograms"
+
+<h3>@Localizer["AcademicPrograms"]</h3>
+
+<div class="mb-3">
+    <a class="btn btn-primary" href="/academicPrograms/create">@Localizer["New"] @Localizer["AcademicProgram"]</a>
+</div>
+
+<GenericList MyList="AcademicPrograms">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Localizer["AcademicProgram"]</th>
+                    <th> @Localizer["Category"]</th>
+                    <th> @Localizer["Institution"]</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var academicPrograms in AcademicPrograms!)
+                {
+                    <tr>
+                        <td>
+                            @academicPrograms.Name
+                        </td>
+                        <td>
+                            @academicPrograms.Category
+                        </td>
+                        <td>
+                            @academicPrograms.Institution!.Name
+                        </td>
+
+                        <td>
+                            <a class="btn btn-warning" href="/institutions/edit/@academicPrograms.InstitutionID">@Localizer["Edit"]</a>
+                            <button class="btn btn-danger" @onclick=@(() => DeleteAsync(academicPrograms))>@Localizer["Delete"]</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>
+
+
+
+
+
+
+
+

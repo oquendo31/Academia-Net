@@ -193,4 +193,22 @@
   <data name="ERR005" xml:space="preserve">
     <value>The team Id is not valid.</value>
   </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select a File… </value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search…</value>
+  </data>
+  <data name="SelectAnInstitution" xml:space="preserve">
+    <value>-- Select an Institution ---</value>
+  </data>
+  <data name="EnterCategory" xml:space="preserve">
+    <value>Enter the category</value>
+  </data>
+  <data name="EnterAcademicProgramName" xml:space="preserve">
+    <value>Enter the academic program name</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
 </root>

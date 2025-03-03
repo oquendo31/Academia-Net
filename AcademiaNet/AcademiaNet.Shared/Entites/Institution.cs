@@ -1,5 +1,6 @@
 ﻿using AcademiaNet.Shared.Resources;
 using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AcademiaNet.Shared.Entites;
 
@@ -21,6 +22,9 @@ public class Institution
     [Display(Name = "Image", ResourceType = typeof(Literals))]
     public string? Photo { get; set; }
 
+    public string ImageFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
+
     public ICollection<AcademicProgram>? AcademicPrograms { get; set; }
+
     public int AcademicProgramsCount => AcademicPrograms == null ? 0 : AcademicPrograms.Count;
 }

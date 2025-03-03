@@ -1,6 +1,7 @@
 ﻿using AcademiaNet.Backend.Data;
 using AcademiaNet.Backend.Helpers;
 using AcademiaNet.Backend.Repositories.Interfaces;
+using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Entites;
 using AcademiaNet.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +24,50 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
         _fileStorage = fileStorage;
     }
 
-    public override Task<ActionResponse<Institution>> AddAsync(Institution entity)
+    /// <summary>
+    /// Guarda la institucion con la foto
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<Institution>> AddAsync(InstitutionDTO institutionDTO)
     {
-        return base.AddAsync(entity);
+        var institution = new Institution
+        {
+            Name = institutionDTO.Name
+        };
+
+        if (!string.IsNullOrEmpty(institutionDTO.Photo))
+        {
+            var imageBase64 = Convert.FromBase64String(institutionDTO.Photo!);
+            institution.Photo = await _fileStorage.SaveFileAsync(imageBase64, ".jpg", "institutions");
+        }
+
+        _context.Add(institution);
+        try
+        {
+            await _context.SaveChangesAsync();
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = true,
+                Result = institution
+            };
+        }
+        catch (DbUpdateException)
+        {
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = false,
+                Message = "ERR003"
+            };
+        }
+        catch (Exception exception)
+        {
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = false,
+                Message = exception.Message
+            };
+        }
     }
 
     /// <summary>

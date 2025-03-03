@@ -5,19 +5,9 @@ using AcademiaNet.Shared.Entites;
 using AcademiaNet.Backend.UnitsOfWork.Interfaces;
 using System.Diagnostics.Metrics;
 using AcademiaNet.Backend.UnitsOfWork.Implementations;
+using AcademiaNet.Shared.DTOs;
 
 namespace AcademiaNet.Backend.Controllers;
-
-//[ApiController]
-//[Route("api/[controller]")]
-//public class InstitutionsController : GenericController<Institution>
-//{
-//    private readonly IInstitutionsUnitOfWork _institutionsUnitOfWork;
-
-//    public InstitutionsController(IGenericUnitOfWork<Institution> unitOfWork, IInstitutionsUnitOfWork institutionsUnitOfWork) : base(unitOfWork)
-//    {
-//        _institutionsUnitOfWork = institutionsUnitOfWork;
-//    }
 
 [ApiController]
 [Route("api/[controller]")]
@@ -69,5 +59,21 @@ public class InstitutionsController : GenericController<Institution>
     public async Task<IActionResult> GetComboAsync()
     {
         return Ok(await _institutionsUnitOfWork.GetComboAsync());
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    [HttpPost("full")]
+    public async Task<IActionResult> PostAsync(InstitutionDTO institutionDTO)
+    {
+        var action = await _institutionsUnitOfWork.AddAsync(institutionDTO);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest(action.Message);
     }
 }
