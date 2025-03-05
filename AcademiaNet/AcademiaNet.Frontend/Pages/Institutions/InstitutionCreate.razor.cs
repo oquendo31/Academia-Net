@@ -1,4 +1,5 @@
 using AcademiaNet.Frontend.Repositories;
+using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Entites;
 using AcademiaNet.Shared.Resources;
 using CurrieTechnologies.Razor.SweetAlert2;
@@ -11,7 +12,9 @@ namespace AcademiaNet.Frontend.Pages.Institutions;
 public partial class InstitutionCreate
 {
     private InstitutionForm? institutionForm;
-    private Institution institution = new();
+
+    //private Institution institution = new();
+    private InstitutionDTO institutionDTO = new();
 
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
@@ -20,7 +23,7 @@ public partial class InstitutionCreate
 
     private async Task CreateAsync()
     {
-        var responseHttp = await Repository.PostAsync("/api/institutions", institution);
+        var responseHttp = await Repository.PostAsync("/api/institutions/full", institutionDTO);
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();

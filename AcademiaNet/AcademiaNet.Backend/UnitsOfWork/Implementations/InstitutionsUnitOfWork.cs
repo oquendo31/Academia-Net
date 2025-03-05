@@ -14,10 +14,12 @@ namespace AcademiaNet.Backend.UnitsOfWork.Implementations;
 public class InstitutionsUnitOfWork : GenericUnitOfWork<Institution>, IInstitutionsUnitOfWork
 {
     private readonly IInstitutionsRepository _institutionsRepository;
+    private readonly ILocationRepository _locationRepository; // Nuevo
 
-    public InstitutionsUnitOfWork(IGenericRepository<Institution> repository, IInstitutionsRepository institutionsRepository) : base(repository)
+    public InstitutionsUnitOfWork(IGenericRepository<Institution> repository, IInstitutionsRepository institutionsRepository, ILocationRepository Locationrepository) : base(repository)
     {
         _institutionsRepository = institutionsRepository;
+        _locationRepository = Locationrepository;
     }
 
     /// <summary>
@@ -45,4 +47,24 @@ public class InstitutionsUnitOfWork : GenericUnitOfWork<Institution>, IInstituti
     /// </summary>
     /// <returns></returns>
     public async Task<IEnumerable<Institution>> GetComboAsync() => await _institutionsRepository.GetComboAsync();
+
+    /// <summary>
+    /// Trae la lista de las ubicaciones
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public async Task<IEnumerable<Location>> GetComboLocationsAsync()
+    {
+        var response = await _locationRepository.GetComboLocationsAsync();
+
+        if (response.WasSuccess)
+        {
+            return response.Result ?? Enumerable.Empty<Location>();  // Devuelve la lista o una lista vacía
+        }
+        else
+        {
+            // Manejo de error: puedes registrar un log o lanzar una excepción según lo requiera tu lógica
+            throw new Exception($"Error al obtener lista de ubicaciones: {response.Message}");
+        }
+    }
 }

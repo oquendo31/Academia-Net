@@ -21,14 +21,14 @@ public class AcademicProgram
     [Display(Name = "AcademicProgram", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Literals))]
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
-    public string Category { get; set; } = null!;
+    public int CategoryID { get; set; }
+
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+    public Category? Category { get; set; }  // Navegación
 
     [Required]
     public int InstitutionID { get; set; }
 
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public Institution? Institution { get; set; }
-    //public ICollection<Enrollment>? Enrollments { get; set; }
-    //public int EnrollmentsCount => Enrollments == null ? 0 : Enrollments.Count;
-    //public ICollection<PeriodAcademicProgram>? PeriodAcademicProgramss { get; set; }
-    //public int PeriodAcademicProgramssCount => PeriodAcademicProgramss == null ? 0 : PeriodAcademicProgramss.Count;
 }

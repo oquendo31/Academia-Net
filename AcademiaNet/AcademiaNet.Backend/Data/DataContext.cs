@@ -11,12 +11,15 @@ public class DataContext : DbContext
 
     public DbSet<Institution> Institutions { get; set; }
     public DbSet<AcademicProgram> AcademicPrograms { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Location> Locations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Institution>().HasIndex(x => x.Name).IsUnique();
-        modelBuilder.Entity<AcademicProgram>().HasIndex(x => new { x.AcademicProgramID, x.Name }).IsUnique();
+        modelBuilder.Entity<Category>().HasIndex(x => x.Name).IsUnique();
+        modelBuilder.Entity<AcademicProgram>().HasIndex(x => new { x.Name, x.InstitutionID }).IsUnique();
         DisableCascadingDelete(modelBuilder);//Desabilita el borrado en cascada evita que borren datos relacionados
     }
 

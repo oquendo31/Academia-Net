@@ -3,10 +3,39 @@
 <EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="mb-3">
-        <label>@Localizer["Institution"]:</label>
+        <label>@Localizer["Institution"]*</label>
         <div>
-            <InputText class="form-control" @bind-Value="@Institution.Name" />
-            <ValidationMessage For="@(() => Institution.Name)" />
+            <InputText class="form-control"
+                       @bind-Value="@InstitutionDTO.Name"
+                       placeholder="@Localizer["EnterInstitution"]" />
+            <ValidationMessage For="@(() => InstitutionDTO.Name)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>@Localizer["Location"]*</label>
+        <div>
+            <select class="form-select" @bind="InstitutionDTO.LocationID">
+                <option value="0">@Localizer["Enterlocation"]</option>
+                @if (locations is not null)
+                {
+                    @foreach (var location in locations)
+                    {
+                        <option value="@location.LocationID">@location.Name</option>
+                    }
+                }
+            </select>
+            <ValidationMessage For="@(() => InstitutionDTO.LocationID)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>@Localizer["Description"]</label>
+        <div>
+            <InputText class="form-control"
+                       @bind-Value="@InstitutionDTO.Description"
+                       placeholder="@Localizer["EnterDescription"]" />
+            <ValidationMessage For="@(() => InstitutionDTO.Description)" />
         </div>
     </div>
 

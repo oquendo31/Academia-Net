@@ -1,4 +1,5 @@
-﻿using AcademiaNet.Backend.UnitsOfWork.Interfaces;
+﻿using AcademiaNet.Backend.UnitsOfWork.Implementations;
+using AcademiaNet.Backend.UnitsOfWork.Interfaces;
 using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Entites;
 using Microsoft.AspNetCore.Mvc;
@@ -88,5 +89,22 @@ public class AcademicProgramsController : GenericController<AcademicProgram>
             return Ok(action.Result);
         }
         return BadRequest(action.Message);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("comboCategories")]
+    public async Task<IActionResult> GetComboCategoriesAsync()
+    {
+        var categories = await _academicProgramsUnitOfWorks.GetComboCategoriesAsync();
+
+        // Puedes devolverlo directamente
+        return Ok(categories);
+
+        // O si prefieres devolver solo un par clave/valor (id/nombre) para combos, puedes hacer un select:
+        // var result = categories.Select(c => new { c.CategoryID, c.Name });
+        // return Ok(result);
     }
 }

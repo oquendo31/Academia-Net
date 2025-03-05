@@ -31,11 +31,13 @@ public partial class AcademicProgramForm
     [Inject] private IRepository Repository { get; set; } = null!;
 
     private List<Institution>? institutions;
+    private List<Category>? categories;
     private string? imageUrl;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadInstitutionsAsync();
+        await LoadInstcategoriesAsync();   // Asegúrate de usar await aquí
     }
 
     protected override void OnParametersSet()
@@ -59,6 +61,19 @@ public partial class AcademicProgramForm
         }
 
         institutions = responseHttp.Response;
+    }
+
+    private async Task LoadInstcategoriesAsync()
+    {
+        var responseHttp = await Repository.GetAsync<List<Category>>("/api/academicPrograms/comboCategories");
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessageAsync();
+            await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
+            return;
+        }
+
+        categories = responseHttp.Response;
     }
 
     //private void ImageSelected(string imagenBase64)

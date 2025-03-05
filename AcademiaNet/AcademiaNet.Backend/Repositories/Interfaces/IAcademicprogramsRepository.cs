@@ -15,4 +15,7 @@ public interface IAcademicprogramsRepository
     Task<ActionResponse<AcademicProgram>> GetAsync(int id);
 
     Task<ActionResponse<IEnumerable<AcademicProgram>>> GetAsync();
+
+    // Nuevo método para obtener categorías (NO ES LO IDEAL, PERO SE PUEDE HACER TEMPORALMENTE)
+    Task<IEnumerable<Category>> GetComboCategoriesAsync();
 }

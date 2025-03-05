@@ -30,6 +30,9 @@ builder.Services.AddScoped(typeof(IInstitutionsUnitOfWork), typeof(InstitutionsU
 builder.Services.AddScoped<IAcademicprogramsRepository, AcademicProgramRepository>();
 builder.Services.AddScoped<IAcademicProgramsUnitOfWorks, AcademicProgramsUnitOfWork>();
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+
 var app = builder.Build();
 SeedData(app);
 void SeedData(WebApplication app)

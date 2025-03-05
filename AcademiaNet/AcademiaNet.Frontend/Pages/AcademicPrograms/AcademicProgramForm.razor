@@ -2,13 +2,29 @@
 
 <EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
-    <div class="mb-3">
+@*     <div class="mb-3">
         <label>@Localizer["Category"]:</label>
         <div>
             <InputText class="form-control"
-                       @bind-Value="@AcademicProgramDTO.Category"
+                       @bind-Value="@AcademicProgramDTO.CategoryName"
                        placeholder="@Localizer["EnterCategory"]" />
-            <ValidationMessage For="@(() => AcademicProgramDTO.Category)" />
+            <ValidationMessage For="@(() => AcademicProgramDTO.CategoryID)" />
+        </div>
+    </div> *@
+    <div class="mb-3">
+        <label>@Localizer["Category"]:</label>
+        <div>
+            <select class="form-select" @bind="AcademicProgramDTO.CategoryID">
+                <option value="0">@Localizer["EnterCategory"]</option>
+                @if (categories is not null)
+                {
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.CategoryID">@category.Name</option>
+                    }
+                }
+            </select>
+            <ValidationMessage For="@(() => AcademicProgramDTO.CategoryID)" />
         </div>
     </div>
 

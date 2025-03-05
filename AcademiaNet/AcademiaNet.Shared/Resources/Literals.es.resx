@@ -223,12 +223,30 @@
     <value>-- Selecciona una Institución ---</value>
   </data>
   <data name="EnterCategory" xml:space="preserve">
-    <value> Ingrese la categoría</value>
+    <value> -- Ingrese la categoría ---</value>
   </data>
   <data name="EnterAcademicProgramName" xml:space="preserve">
     <value>Ingrese el nombre del programa académico</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Categoría</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="Locations" xml:space="preserve">
+    <value>Ubicaciones</value>
+  </data>
+  <data name="Enterlocation" xml:space="preserve">
+    <value>-- Ingrese la ubicación ---</value>
+  </data>
+  <data name="EnterInstitution" xml:space="preserve">
+    <value> Ingrese la institución </value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="EnterDescription" xml:space="preserve">
+    <value>Ingresa la descripción del programa.</value>
   </data>
 </root>

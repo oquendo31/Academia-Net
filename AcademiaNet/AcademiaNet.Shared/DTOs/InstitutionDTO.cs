@@ -18,8 +18,9 @@ public class InstitutionDTO
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; } = null!;
 
-    [MaxLength(100)]
-    public string? Location { get; set; } // Ubicación de la institución (opcional)
+    [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [Display(Name = "Location", ResourceType = typeof(Literals))]
+    public int LocationID { get; set; }
 
     [MaxLength(100)]
     public string? Description { get; set; }

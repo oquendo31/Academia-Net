@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using System.Diagnostics.Metrics;
 using AcademiaNet.Shared.Entites;
+using AcademiaNet.Shared.DTOs;
+using AcademiaNet.Frontend.Repositories;
 
 namespace AcademiaNet.Frontend.Pages.Institutions;
 
@@ -13,20 +15,53 @@ public partial class InstitutionForm
 {
     private EditContext editContext = null!;
 
+    private List<Location>? locations;
+
     protected override void OnInitialized()
     {
-        editContext = new(Institution);
+        editContext = new(InstitutionDTO);
     }
 
-    [EditorRequired, Parameter] public Institution Institution { get; set; } = null!;
+    //[EditorRequired, Parameter] public Institution Institution { get; set; } = null!;
     [EditorRequired, Parameter] public EventCallback OnValidSubmit { get; set; }
+
     [EditorRequired, Parameter] public EventCallback ReturnAction { get; set; }
+    [EditorRequired, Parameter] public InstitutionDTO InstitutionDTO { get; set; } = null!;
 
     public bool FormPostedSuccessfully { get; set; } = false;
 
     [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
     [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
 
+    [Inject] private IRepository Repository { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadInstitutionsAsync();
+    }
+
+    /// <summary>
+    /// Trae la lista de las ubicaciones
+    /// </summary>
+    /// <returns></returns>
+    private async Task LoadInstitutionsAsync()
+    {
+        var responseHttp = await Repository.GetAsync<List<Location>>("/api/institutions/comboLocations");
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessageAsync();
+            await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
+            return;
+        }
+
+        locations = responseHttp.Response;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
     {
         var formWasEdited = editContext.IsModified();

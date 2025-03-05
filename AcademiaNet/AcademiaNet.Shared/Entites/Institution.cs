@@ -13,8 +13,8 @@ public class Institution
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; } = null!;
 
-    [MaxLength(100)]
-    public string? Location { get; set; } // Permitir null
+    //[MaxLength(100)]
+    //public string? Location { get; set; } // Permitir null
 
     [MaxLength(100)]
     public string? Description { get; set; } // Permitir null
@@ -23,6 +23,12 @@ public class Institution
     public string? Photo { get; set; }
 
     public string ImageFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
+
+    public int LocationID { get; set; }
+
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+
+    public Location? Location { get; set; }  // Navegación
 
     public ICollection<AcademicProgram>? AcademicPrograms { get; set; }
 

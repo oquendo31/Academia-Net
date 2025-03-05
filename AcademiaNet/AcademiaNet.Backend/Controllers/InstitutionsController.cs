@@ -76,4 +76,14 @@ public class InstitutionsController : GenericController<Institution>
         }
         return BadRequest(action.Message);
     }
+
+    /// <summary>
+    /// Trae la lista de las ubicaciones
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("comboLocations")]
+    public async Task<IActionResult> GetComboLocationsAsync()
+    {
+        return Ok(await _institutionsUnitOfWork.GetComboLocationsAsync());
+    }
 }

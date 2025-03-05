@@ -33,7 +33,9 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
     {
         var institution = new Institution
         {
-            Name = institutionDTO.Name
+            Name = institutionDTO.Name.Trim(),
+            LocationID = institutionDTO.LocationID,
+            Description = institutionDTO.Description
         };
 
         if (!string.IsNullOrEmpty(institutionDTO.Photo))

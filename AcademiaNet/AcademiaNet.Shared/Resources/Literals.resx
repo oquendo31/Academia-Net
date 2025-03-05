@@ -203,12 +203,30 @@
     <value>-- Select an Institution ---</value>
   </data>
   <data name="EnterCategory" xml:space="preserve">
-    <value>Enter the category</value>
+    <value>-- Enter the category ---</value>
   </data>
   <data name="EnterAcademicProgramName" xml:space="preserve">
     <value>Enter the academic program name</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Locations" xml:space="preserve">
+    <value>Locations </value>
+  </data>
+  <data name="Enterlocation" xml:space="preserve">
+    <value>-- Enter the location ---</value>
+  </data>
+  <data name="EnterInstitution" xml:space="preserve">
+    <value>Enter the Institution </value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EnterDescription" xml:space="preserve">
+    <value>Enter the program description.</value>
   </data>
 </root>

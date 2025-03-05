@@ -142,6 +142,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -160,11 +169,38 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter the category.
+        ///   Looks up a localized string similar to -- Enter the category ---.
         /// </summary>
         public static string EnterCategory {
             get {
                 return ResourceManager.GetString("EnterCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the program description..
+        /// </summary>
+        public static string EnterDescription {
+            get {
+                return ResourceManager.GetString("EnterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the Institution .
+        /// </summary>
+        public static string EnterInstitution {
+            get {
+                return ResourceManager.GetString("EnterInstitution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -- Enter the location ---.
+        /// </summary>
+        public static string Enterlocation {
+            get {
+                return ResourceManager.GetString("Enterlocation", resourceCulture);
             }
         }
         
@@ -264,6 +300,24 @@ namespace AcademiaNet.Shared.Resources {
         public static string LeaveAndLoseChanges {
             get {
                 return ResourceManager.GetString("LeaveAndLoseChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locations .
+        /// </summary>
+        public static string Locations {
+            get {
+                return ResourceManager.GetString("Locations", resourceCulture);
             }
         }
         

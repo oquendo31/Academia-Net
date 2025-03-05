@@ -32,4 +32,10 @@ public interface IInstitutionsUnitOfWork
     /// <param name="institutionDTO"></param>
     /// <returns></returns>
     Task<ActionResponse<Institution>> AddAsync(InstitutionDTO institutionDTO);
+
+    /// <summary>
+    /// Trae la lista de las ubicaciones
+    /// </summary>
+    /// <returns></returns>
+    Task<IEnumerable<Location>> GetComboLocationsAsync();
 }

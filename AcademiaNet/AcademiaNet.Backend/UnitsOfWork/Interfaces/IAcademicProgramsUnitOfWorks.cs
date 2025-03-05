@@ -15,4 +15,6 @@ public interface IAcademicProgramsUnitOfWorks
     Task<ActionResponse<AcademicProgram>> GetAsync(int id);
 
     Task<ActionResponse<IEnumerable<AcademicProgram>>> GetAsync();
+
+    Task<IEnumerable<Category>> GetComboCategoriesAsync();
 }

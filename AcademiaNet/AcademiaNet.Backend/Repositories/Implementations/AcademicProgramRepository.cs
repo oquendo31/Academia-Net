@@ -23,9 +23,11 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
     public override async Task<ActionResponse<IEnumerable<AcademicProgram>>> GetAsync()
     {
         var academicprograms = await _context.AcademicPrograms
-                .Include(x => x.Institution)
-                .OrderBy(x => x.Name)
-                .ToListAsync();
+            .Include(x => x.Institution)  // Relación con Institution
+            .Include(x => x.Category)     // Relación con Category
+            .OrderBy(x => x.Name)
+            .ToListAsync();
+
         return new ActionResponse<IEnumerable<AcademicProgram>>
         {
             WasSuccess = true,
@@ -80,9 +82,10 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
         var academicprogram = new AcademicProgram
         {
             InstitutionID = academicProgramDTO.InstitutionID,
-            Name = academicProgramDTO.Name,
-            Category = academicProgramDTO.Category
+            Name = academicProgramDTO.Name.Trim(),
+            CategoryID = academicProgramDTO.CategoryID
         };
+
 
         //if (!string.IsNullOrEmpty(teamDTO.Image))
         //{
@@ -193,5 +196,12 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
                 Message = exception.Message
             };
         }
+    }
+
+    public async Task<IEnumerable<Category>> GetComboCategoriesAsync()
+    {
+        return await _context.Categories
+            .OrderBy(c => c.Name)
+            .ToListAsync();
     }
 }
