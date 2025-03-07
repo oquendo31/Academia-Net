@@ -2,13 +2,13 @@
 
 <h3>@Localizer["Edit"] @Localizer["Institution"]</h3>
 
-@if (institution is null)
+@if (institutionDTO is null)
 {
     <Loading />
 }
 else
 {
-    <InstitutionForm @ref="institutionForm" Institution="institution" OnValidSubmit="EditAsync" ReturnAction="Return" />
+    <InstitutionForm @ref="institutionForm" InstitutionDTO="institutionDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
 }
 
 

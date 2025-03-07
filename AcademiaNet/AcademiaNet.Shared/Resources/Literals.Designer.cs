@@ -259,6 +259,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exam Management.
+        /// </summary>
+        public static string ExamManagement {
+            get {
+                return ResourceManager.GetString("ExamManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {

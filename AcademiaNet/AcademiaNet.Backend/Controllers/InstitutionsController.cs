@@ -86,4 +86,20 @@ public class InstitutionsController : GenericController<Institution>
     {
         return Ok(await _institutionsUnitOfWork.GetComboLocationsAsync());
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="academicProgramDTO"></param>
+    /// <returns></returns>
+    [HttpPut("full")]
+    public async Task<IActionResult> PutAsync(InstitutionDTO institutionDTO)
+    {
+        var action = await _institutionsUnitOfWork.UpdateAsync(institutionDTO);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest(action.Message);
+    }
 }

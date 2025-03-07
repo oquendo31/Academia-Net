@@ -73,6 +73,62 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
     }
 
     /// <summary>
+    /// Update Async Institution
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<Institution>> UpdateAsync(InstitutionDTO institutionDTO)
+    {
+        var currentnstitution = await _context.Institutions.FindAsync(institutionDTO.InstitutionID);
+        if (currentnstitution == null)
+        {
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = false,
+                Message = "ERR005"
+            };
+        }
+     
+
+        if (!string.IsNullOrEmpty(institutionDTO.Photo))
+        {
+            var imageBase64 = Convert.FromBase64String(institutionDTO.Photo!);
+            currentnstitution.Photo = await _fileStorage.SaveFileAsync(imageBase64, ".jpg", "institutions");
+        }
+              
+        currentnstitution.Name = institutionDTO.Name;
+        currentnstitution.LocationID = institutionDTO.LocationID;
+        currentnstitution.Description = institutionDTO.Description;
+
+        _context.Update(currentnstitution);
+        try
+        {
+            await _context.SaveChangesAsync();
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = true,
+                Result = currentnstitution
+            };
+        }
+        catch (DbUpdateException)
+        {
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = false,
+                Message = "ERR003"
+            };
+        }
+        catch (Exception exception)
+        {
+            return new ActionResponse<Institution>
+            {
+                WasSuccess = false,
+                Message = exception.Message
+            };
+        }
+    }
+
+    /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
@@ -80,6 +136,8 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
     {
         var institutions = await _context.Institutions // Esto se refiere a un inner join me trae ambas tablas
             .Include(x => x.AcademicPrograms)
+            .Include(x => x.Location)     // Relación con Location
+            .OrderBy(x => x.Name)
             .ToListAsync();
         return new ActionResponse<IEnumerable<Institution>>
         {

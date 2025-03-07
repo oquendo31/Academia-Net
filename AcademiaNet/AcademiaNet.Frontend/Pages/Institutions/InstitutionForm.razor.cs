@@ -35,9 +35,21 @@ public partial class InstitutionForm
 
     [Inject] private IRepository Repository { get; set; } = null!;
 
+    private string? imageUrl;
+
     protected override async Task OnInitializedAsync()
     {
         await LoadInstitutionsAsync();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (!string.IsNullOrEmpty(InstitutionDTO.Photo))
+        {
+            imageUrl = InstitutionDTO.Photo;
+            InstitutionDTO.Photo = null;
+        }
     }
 
     /// <summary>
@@ -55,6 +67,12 @@ public partial class InstitutionForm
         }
 
         locations = responseHttp.Response;
+    }
+
+    private void ImageSelected(string imagenBase64)
+    {
+        InstitutionDTO.Photo = imagenBase64;
+        imageUrl = null;
     }
 
     /// <summary>

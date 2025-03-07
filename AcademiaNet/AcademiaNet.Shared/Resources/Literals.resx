@@ -229,4 +229,7 @@
   <data name="EnterDescription" xml:space="preserve">
     <value>Enter the program description.</value>
   </data>
+  <data name="ExamManagement" xml:space="preserve">
+    <value>Exam Management</value>
+  </data>
 </root>

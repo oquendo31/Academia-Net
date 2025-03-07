@@ -1,0 +1,15 @@
+﻿@page "/academicPrograms/edit/{Id:int}"
+
+<h3>@Localizer["Edit"] @Localizer["AcademicProgram"]</h3>
+
+@if (academicProgramDTO is null)
+{
+    <Loading />
+}
+else
+{
+    <AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
+}
+
+
+

@@ -38,4 +38,10 @@ public interface IInstitutionsUnitOfWork
     /// </summary>
     /// <returns></returns>
     Task<IEnumerable<Location>> GetComboLocationsAsync();
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    Task<ActionResponse<Institution>> UpdateAsync(InstitutionDTO institutionDTO);
 }

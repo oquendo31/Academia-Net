@@ -32,6 +32,13 @@ public class InstitutionsUnitOfWork : GenericUnitOfWork<Institution>, IInstituti
     /// <summary>
     ///
     /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<Institution>> UpdateAsync(InstitutionDTO institutionDTO) => await _institutionsRepository.UpdateAsync(institutionDTO);
+
+    /// <summary>
+    ///
+    /// </summary>
     /// <returns></returns>
     public override async Task<ActionResponse<IEnumerable<Institution>>> GetAsync() => await _institutionsRepository.GetAsync();
 

@@ -32,4 +32,11 @@ public interface IInstitutionsRepository
     /// <param name="institutionDTO"></param>
     /// <returns></returns>
     Task<ActionResponse<Institution>> AddAsync(InstitutionDTO institutionDTO);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="institutionDTO"></param>
+    /// <returns></returns>
+    Task<ActionResponse<Institution>> UpdateAsync(InstitutionDTO institutionDTO);
 }

@@ -5,15 +5,13 @@ using AcademiaNet.Shared.Resources;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using System.Diagnostics.Metrics;
 
-namespace AcademiaNet.Frontend.Pages.Institutions;
+namespace AcademiaNet.Frontend.Pages.AcademicPrograms;
 
-public partial class InstitutionEdit
+public partial class AcademicProgramEdit
 {
-    private Institution? institution;
-    private InstitutionForm? institutionForm;
-    private InstitutionDTO? institutionDTO;
+    private AcademicProgramDTO? academicProgramDTO;
+    private AcademicProgramForm? academicProgramForm;
 
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
@@ -24,43 +22,41 @@ public partial class InstitutionEdit
 
     protected override async Task OnInitializedAsync()
     {
-        var responseHttp = await Repository.GetAsync<Institution>($"api/institutions/{Id}");
+        var responseHttp = await Repository.GetAsync<AcademicProgram>($"api/academicPrograms/{Id}");
 
         if (responseHttp.Error)
         {
             if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                NavigationManager.NavigateTo("institutions");
+                NavigationManager.NavigateTo("academicPrograms");
             }
             else
             {
                 var messageError = await responseHttp.GetErrorMessageAsync();
-                await SweetAlertService.FireAsync(Localizer["Error"], Localizer[messageError!], SweetAlertIcon.Error);
+                await SweetAlertService.FireAsync(Localizer["Error"], messageError, SweetAlertIcon.Error);
             }
         }
         else
         {
-            institution = responseHttp.Response;
-
-            institutionDTO = new InstitutionDTO()
+            var academicProgram = responseHttp.Response;
+            academicProgramDTO = new AcademicProgramDTO()
             {
-                InstitutionID = institution!.InstitutionID,
-                Name = institution!.Name,
-                LocationID = institution!.LocationID,
-                Description = institution!.Description,
-                Photo = institution!.Photo
+                AcademicProgramID = academicProgram!.AcademicProgramID,
+                Name = academicProgram!.Name,
+                CategoryID = academicProgram.CategoryID,
+                InstitutionID = academicProgram.InstitutionID
             };
         }
     }
 
     private async Task EditAsync()
     {
-        var responseHttp = await Repository.PutAsync("api/institutions/full", institutionDTO);
+        var responseHttp = await Repository.PutAsync("api/academicPrograms/full", academicProgramDTO);
 
         if (responseHttp.Error)
         {
             var mensajeError = await responseHttp.GetErrorMessageAsync();
-            await SweetAlertService.FireAsync(Localizer["Error"], mensajeError, SweetAlertIcon.Error);
+            await SweetAlertService.FireAsync(Localizer["Error"], Localizer[mensajeError!], SweetAlertIcon.Error);
             return;
         }
 
@@ -72,12 +68,12 @@ public partial class InstitutionEdit
             ShowConfirmButton = true,
             Timer = 3000
         });
-        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordSavedOk"]);
+        toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordSavedOk"]);
     }
 
     private void Return()
     {
-        institutionForm!.FormPostedSuccessfully = true;
-        NavigationManager.NavigateTo("institutions");
+        academicProgramForm!.FormPostedSuccessfully = true;
+        NavigationManager.NavigateTo("/academicPrograms");
     }
 }
