@@ -70,4 +70,18 @@ public class AcademicProgramsUnitOfWork : GenericUnitOfWork<AcademicProgram>, IA
             throw new Exception($"Error al obtener categorías: {response.Message}");
         }
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public override async Task<ActionResponse<IEnumerable<AcademicProgram>>> GetAsync(PaginationDTO pagination) => await _academicprogramsRepository.GetAsync(pagination);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination) => await _academicprogramsRepository.GetTotalRecordsAsync(pagination);
 }

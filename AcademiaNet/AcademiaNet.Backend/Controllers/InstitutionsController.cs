@@ -102,4 +102,36 @@ public class InstitutionsController : GenericController<Institution>
         }
         return BadRequest(action.Message);
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    [HttpGet("paginated")]
+    public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+    {
+        var response = await _institutionsUnitOfWork.GetAsync(pagination);
+        if (response.WasSuccess)
+        {
+            return Ok(response.Result);
+        }
+        return BadRequest();
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    [HttpGet("totalRecordsPaginated")]
+    public async Task<IActionResult> GetTotalRecordsAsync([FromQuery] PaginationDTO pagination)
+    {
+        var action = await _institutionsUnitOfWork.GetTotalRecordsAsync(pagination);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest();
+    }
 }

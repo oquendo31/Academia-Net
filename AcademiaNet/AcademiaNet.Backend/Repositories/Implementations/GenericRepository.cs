@@ -1,5 +1,7 @@
 ﻿using AcademiaNet.Backend.Data;
+using AcademiaNet.Backend.Helpers;
 using AcademiaNet.Backend.Repositories.Interfaces;
+using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
 
@@ -166,6 +168,39 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         {
             WasSuccess = false,
             Message = "ERR003"
+        };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+
+        return new ActionResponse<IEnumerable<T>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+                .Paginate(pagination)
+                .ToListAsync()
+        };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public virtual async Task<ActionResponse<int>> GetTotalRecordsAsync()
+    {
+        var queryable = _entity.AsQueryable();
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
         };
     }
 }

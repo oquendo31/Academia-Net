@@ -39,4 +39,18 @@ public interface IInstitutionsRepository
     /// <param name="institutionDTO"></param>
     /// <returns></returns>
     Task<ActionResponse<Institution>> UpdateAsync(InstitutionDTO institutionDTO);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    Task<ActionResponse<IEnumerable<Institution>>> GetAsync(PaginationDTO pagination);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
 }

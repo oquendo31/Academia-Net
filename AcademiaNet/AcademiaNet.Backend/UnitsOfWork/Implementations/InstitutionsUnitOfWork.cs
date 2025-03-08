@@ -74,4 +74,18 @@ public class InstitutionsUnitOfWork : GenericUnitOfWork<Institution>, IInstituti
             throw new Exception($"Error al obtener lista de ubicaciones: {response.Message}");
         }
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public override async Task<ActionResponse<IEnumerable<Institution>>> GetAsync(PaginationDTO pagination) => await _institutionsRepository.GetAsync(pagination);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination) => await _institutionsRepository.GetTotalRecordsAsync(pagination);
 }

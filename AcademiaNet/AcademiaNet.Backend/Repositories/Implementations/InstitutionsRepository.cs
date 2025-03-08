@@ -88,14 +88,13 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
                 Message = "ERR005"
             };
         }
-     
 
         if (!string.IsNullOrEmpty(institutionDTO.Photo))
         {
             var imageBase64 = Convert.FromBase64String(institutionDTO.Photo!);
             currentnstitution.Photo = await _fileStorage.SaveFileAsync(imageBase64, ".jpg", "institutions");
         }
-              
+
         currentnstitution.Name = institutionDTO.Name;
         currentnstitution.LocationID = institutionDTO.LocationID;
         currentnstitution.Description = institutionDTO.Description;
@@ -182,5 +181,54 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
         return await _context.Institutions
             .OrderBy(x => x.Name)
             .ToListAsync();
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public override async Task<ActionResponse<IEnumerable<Institution>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.Institutions
+            .Include(x => x.AcademicPrograms)
+            .Include(x => x.Location)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        return new ActionResponse<IEnumerable<Institution>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+                .OrderBy(x => x.Name)
+                .Paginate(pagination)
+                .ToListAsync()
+        };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.Institutions.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
+        };
     }
 }

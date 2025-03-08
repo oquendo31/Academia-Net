@@ -1,4 +1,5 @@
 ﻿using AcademiaNet.Backend.UnitsOfWork.Interfaces;
+using AcademiaNet.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiaNet.Backend.Controllers;
@@ -89,5 +90,36 @@ public class GenericController<T> : Controller where T : class
             return NoContent();
         }
         return BadRequest(action.Message);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    [HttpGet("paginated")]
+    public virtual async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+    {
+        var action = await _unitOfWork.GetAsync(pagination);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest();
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("totalRecords")]
+    public virtual async Task<IActionResult> GetTotalRecordsAsync()
+    {
+        var action = await _unitOfWork.GetTotalRecordsAsync();
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest();
     }
 }

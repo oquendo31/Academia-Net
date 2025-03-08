@@ -1,4 +1,5 @@
 ﻿using AcademiaNet.Backend.Data;
+using AcademiaNet.Backend.Helpers;
 using AcademiaNet.Backend.Repositories.Interfaces;
 using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Entites;
@@ -85,7 +86,6 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
             Name = academicProgramDTO.Name.Trim(),
             CategoryID = academicProgramDTO.CategoryID
         };
-
 
         //if (!string.IsNullOrEmpty(teamDTO.Image))
         //{
@@ -203,5 +203,53 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
         return await _context.Categories
             .OrderBy(c => c.Name)
             .ToListAsync();
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public override async Task<ActionResponse<IEnumerable<AcademicProgram>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.AcademicPrograms
+            .Include(x => x.Institution)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.Institution!.Name.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        return new ActionResponse<IEnumerable<AcademicProgram>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+                .OrderBy(x => x.Name)
+                .Paginate(pagination)
+                .ToListAsync()
+        };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    public async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _context.AcademicPrograms.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(pagination.Filter))
+        {
+            queryable = queryable.Where(x => x.Institution!.Name.ToLower().Contains(pagination.Filter.ToLower()));
+        }
+
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
+        };
     }
 }

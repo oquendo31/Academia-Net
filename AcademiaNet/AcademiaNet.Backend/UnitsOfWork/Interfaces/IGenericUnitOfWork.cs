@@ -1,4 +1,5 @@
-﻿using AcademiaNet.Shared.Responses;
+﻿using AcademiaNet.Shared.DTOs;
+using AcademiaNet.Shared.Responses;
 
 namespace AcademiaNet.Backend.UnitsOfWork.Interfaces;
 
@@ -37,4 +38,17 @@ public interface IGenericUnitOfWork<T> where T : class
     /// <param name="id"></param>
     /// <returns></returns>
     Task<ActionResponse<T>> GetAsync(int id);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="pagination"></param>
+    /// <returns></returns>
+    Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    Task<ActionResponse<int>> GetTotalRecordsAsync();
 }

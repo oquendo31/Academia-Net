@@ -1,14 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AcademiaNet.Backend.Helpers;
+using AcademiaNet.Shared.Entites;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 
 namespace AcademiaNet.Backend.Data;
 
 public class SeedDb
 {
     private readonly DataContext _context;
+    private readonly IFileStorage _fileStorage;
 
-    public SeedDb(DataContext context)
+    public SeedDb(DataContext context, IFileStorage fileStorage)
     {
         _context = context;
+        _fileStorage = fileStorage;
     }
 
     public async Task SeedAsync()
@@ -18,6 +23,7 @@ public class SeedDb
         await CheckLocationsAsync();
         await CheckInstitutionsAsync();
         await CheckAcademicProgramsAsync();
+        await CheckInstitutionsImagesAsync();
     }
 
     private async Task CheckLocationsAsync()
@@ -27,6 +33,55 @@ public class SeedDb
             var locationsSQLScript = File.ReadAllText("Data\\Locations.sql");
             await _context.Database.ExecuteSqlRawAsync(locationsSQLScript);
         }
+    }
+
+    private async Task CheckInstitutionsImagesAsync()
+    {
+        var institutions = _context.Institutions.ToList();
+
+        foreach (var institution in institutions)
+        {
+            if (string.IsNullOrEmpty(institution.Photo))
+            {
+                var imagePath = string.Empty;
+                var fileExtensions = new[] { ".png", ".jpeg", ".jpg" };
+
+                string? filePath = null;
+
+                foreach (var extension in fileExtensions)
+                {
+                    var tempPath = Path.Combine(Environment.CurrentDirectory, "Images", "Flags", $"{institution.Name}{extension}");
+
+                    if (File.Exists(tempPath))
+                    {
+                        filePath = tempPath;
+                        break; // Apenas encuentre una imagen, sal del bucle
+                    }
+                }
+
+                if (filePath != null)
+                {
+                    // Si encontró alguna imagen, la lee
+                    var fileBytes = await File.ReadAllBytesAsync(filePath);
+
+                    // Detecta la extensión real (sin el punto)
+                    var fileExtension = Path.GetExtension(filePath).TrimStart('.');
+
+                    // Guarda el archivo en el sistema de almacenamiento
+                    imagePath = await _fileStorage.SaveFileAsync(fileBytes, fileExtension, "institutions");
+
+                    // Actualiza el campo Photo
+                    institution.Photo = imagePath;
+                }
+                else
+                {
+                    // Si no encontró ninguna, asigna imagen por defecto
+                    institution.Photo = "/images/NoImage.png";
+                }
+            }
+        }
+
+        await _context.SaveChangesAsync();
     }
 
     private async Task CheckInstitutionsAsync()
