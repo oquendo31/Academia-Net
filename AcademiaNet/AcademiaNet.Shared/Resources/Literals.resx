@@ -232,4 +232,22 @@
   <data name="ExamManagement" xml:space="preserve">
     <value>Exam Management</value>
   </data>
+  <data name="RecordsNumber" xml:space="preserve">
+    <value>RecordsNumber</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Clean" xml:space="preserve">
+    <value>Clean</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

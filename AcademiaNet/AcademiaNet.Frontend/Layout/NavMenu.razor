@@ -1,36 +1,29 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">@Localizer["Title"]</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Rounded.Home">
+        @Localizer["Home"]
+    </MudNavLink>
+    <MudDivider />
+    
+    <MudNavLink Href="/institutions" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Apartment">
+        @Localizer["Institutions"]
+    </MudNavLink>
+    <MudDivider />
+    
+    <MudNavLink Href="/academicPrograms" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.School">
+        @Localizer["AcademicPrograms"]
+    </MudNavLink>
+    <MudDivider />
+    
+    <MudNavLink Href="/examManagements" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Assignment">
+        @Localizer["ExamManagement"]
+    </MudNavLink>
+    <MudDivider />
+    
+    <MudNavLink Href="/about" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Info">
+        @Localizer["About"]
+    </MudNavLink>
+</MudNavMenu>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @Localizer["Home"]
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="institutions">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> @Localizer["Institutions"]
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="academicPrograms">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> @Localizer["AcademicPrograms"]
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="examManagements">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> @Localizer["ExamManagement"]
-            </NavLink>
-        </div>
-  
-    </nav>
-</div>
 
 
