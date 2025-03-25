@@ -1,4 +1,5 @@
-﻿using AcademiaNet.Shared.Resources;
+﻿using AcademiaNet.Shared.Entites;
+using AcademiaNet.Shared.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,7 @@ public class InstitutionDTO
     [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     [Display(Name = "Location", ResourceType = typeof(Literals))]
     public int LocationID { get; set; }
+    public Location? Location { get; set; }  // Navegación
 
     [MaxLength(100)]
     public string? Description { get; set; }

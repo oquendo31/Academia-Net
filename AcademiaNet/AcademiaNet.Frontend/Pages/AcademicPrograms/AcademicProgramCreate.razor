@@ -1,9 +1,17 @@
-﻿@page "/academicPrograms/create"
+﻿@* @page "/academicPrograms/create"
 
 <h3>@Localizer["Create"] @Localizer["AcademicProgram"]</h3>
 
-@* <AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="CreateAsync" ReturnAction="Return" /> *@
-<AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="CreateAsync" ReturnAction="Return" />
+<AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="CreateAsync" ReturnAction="Return" /> *@
+@page "/academicPrograms/create"
+
+
+<MudDialog>
+    <DialogContent>
+        <AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="CreateAsync" ReturnAction="Return" />
+    </DialogContent>
+</MudDialog>
+
 
 
 

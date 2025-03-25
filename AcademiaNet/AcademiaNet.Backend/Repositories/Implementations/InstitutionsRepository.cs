@@ -154,6 +154,7 @@ public class InstitutionsRepository : GenericRepository<Institution>, IInstituti
     {
         var institution = await _context.Institutions
              .Include(x => x.AcademicPrograms)
+             .Include(x => x.Location)     // Relación con Location
              .FirstOrDefaultAsync(x => x.InstitutionID == id);
 
         if (institution == null)

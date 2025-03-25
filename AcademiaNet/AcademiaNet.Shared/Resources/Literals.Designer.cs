@@ -403,6 +403,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please wait....
+        /// </summary>
+        public static string PleaseWait {
+            get {
+                return ResourceManager.GetString("PleaseWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Record created successfully..
         /// </summary>
         public static string RecordCreatedOk {

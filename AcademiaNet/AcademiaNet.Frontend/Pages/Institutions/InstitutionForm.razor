@@ -6,13 +6,21 @@
     <DataAnnotationsValidator />
 
     <!-- Campo para la Institución -->
-    <MudTextField Label="@Localizer["Institution"]"
+    <MudTextField Label="@(Localizer["Institution"] + " *")"
+                  Placeholder="@Localizer["EnterInstitution"]"
                   @bind-Value="@InstitutionDTO.Name"
                   For="@(() => InstitutionDTO.Name)"
                   Class="mb-4" />
 
+
+
     <!-- Campo para la Ubicación -->
-    <MudSelect T="int" Label="@(Localizer["Location"])" @bind-Value="InstitutionDTO.LocationID" Class="mb-4">
+
+    <MudSelect T="int" Label="@(Localizer["Location"])"
+               @bind-Value="InstitutionDTO.LocationID"
+               ToStringFunc="(id) => locations?.FirstOrDefault(l => l.LocationID == id)?.Name ?? id.ToString()"
+               Required="true" 
+               Class="mb-4">
         <MudSelectItem T="int" Value="0">@Localizer["Enterlocation"]</MudSelectItem>
         @if (locations is not null)
         {
@@ -23,6 +31,9 @@
         }
     </MudSelect>
     <ValidationMessage For="@(() => InstitutionDTO.LocationID)" />
+
+
+
 
     <!-- Campo para la Descripción -->
     <MudTextField Label="@(Localizer["Description"])"
@@ -31,67 +42,13 @@
                   Class="mb-4" />
     <ValidationMessage For="@(() => InstitutionDTO.Description)" />
 
-
-
-    <div class="mb-3">
-        <InputImg Label=@Localizer["Image"] ImageSelected="ImageSelected" ImageURL="@imageUrl" />
-    </div>
-
-
-    <!-- Botones -->
-    <MudButton Variant="Variant.Outlined"
-               StartIcon="@Icons.Material.Filled.ArrowBack"
-               Color="Color.Info"
-               OnClick="ReturnAction">
-        @Localizer["Return"]
-    </MudButton>
-
-    <MudButton Variant="Variant.Outlined"
-               StartIcon="@Icons.Material.Filled.Check"
-               Color="Color.Primary"
-               ButtonType="ButtonType.Submit">
-        @Localizer["SaveChanges"]
-    </MudButton>
-</EditForm>
-
-
-
-@* <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
-
-<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
-
-    <!-- Campo para la Institución -->
-    <MudTextField Label="@Localizer["Institution"]"
-                  @bind-Value="@InstitutionDTO.Name"
-                  For="@(() => InstitutionDTO.Name)"
-                  Class="mb-4" />
-
-    <!-- Campo para la Ubicación -->
-    <MudSelect T="int" Label="@(Localizer["Location"])" @bind-Value="InstitutionDTO.LocationID" Class="mb-4">
-        <MudSelectItem T="int" Value="0">@Localizer["Enterlocation"]</MudSelectItem>
-        @if (locations is not null)
-        {
-            @foreach (var location in locations)
-            {
-                <MudSelectItem T="int" Value="@location.LocationID">@location.Name</MudSelectItem>
-            }
-        }
-    </MudSelect>
-    <ValidationMessage For="@(() => InstitutionDTO.LocationID)" />
-
-    <!-- Campo para la Description -->
-    <MudTextField Label="@(Localizer["Description"])"
-                  @bind-Value="@InstitutionDTO.Description"
-                  Placeholder="@(Localizer["EnterDescription"])"
-                  Class="mb-4" />
-    <ValidationMessage For="@(() => InstitutionDTO.Description)" />
-
-    <div class="mb-3">
-        <InputImg Label=@Localizer["Image"] ImageSelected="ImageSelected" ImageURL="@imageUrl" />
-    </div>
-
-
+    <MudCard Class="my-2">
+        <MudCardContent>
+            <InputImg Label="@Localizer["Image"]"
+                      ImageSelected="@ImageSelected"
+                      ImageURL="@imageUrl" />
+        </MudCardContent>
+    </MudCard>
 
 
     <!-- Botones -->
@@ -109,57 +66,7 @@
         @Localizer["SaveChanges"]
     </MudButton>
 </EditForm>
- *@
 
 
-@* <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
 
-<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
-    <div class="mb-3">
-        <label>@Localizer["Institution"]*</label>
-        <div>
-            <InputText class="form-control"
-                       @bind-Value="@InstitutionDTO.Name"
-                       placeholder="@Localizer["EnterInstitution"]" />
-            <ValidationMessage For="@(() => InstitutionDTO.Name)" />
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label>@Localizer["Location"]*</label>
-        <div>
-            <select class="form-select" @bind="InstitutionDTO.LocationID">
-                <option value="0">@Localizer["Enterlocation"]</option>
-                @if (locations is not null)
-                {
-                    @foreach (var location in locations)
-                    {
-                        <option value="@location.LocationID">@location.Name</option>
-                    }
-                }
-            </select>
-            <ValidationMessage For="@(() => InstitutionDTO.LocationID)" />
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label>@Localizer["Description"]</label>
-        <div>
-            <InputText class="form-control"
-                       @bind-Value="@InstitutionDTO.Description"
-                       placeholder="@Localizer["EnterDescription"]" />
-            <ValidationMessage For="@(() => InstitutionDTO.Description)" />
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <InputImg Label=@Localizer["Image"] ImageSelected="ImageSelected" ImageURL="@imageUrl" />
-    </div>
-
-
-    <button class="btn btn-primary" type="submit">@Localizer["SaveChanges"]</button>
-    <button class="btn btn-success" @onclick="ReturnAction">@Localizer["Return"]</button>
-</EditForm>
- *@
 

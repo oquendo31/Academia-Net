@@ -2,67 +2,71 @@
 
 <EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
-@*     <div class="mb-3">
-        <label>@Localizer["Category"]:</label>
-        <div>
-            <InputText class="form-control"
-                       @bind-Value="@AcademicProgramDTO.CategoryName"
-                       placeholder="@Localizer["EnterCategory"]" />
-            <ValidationMessage For="@(() => AcademicProgramDTO.CategoryID)" />
-        </div>
-    </div> *@
-    <div class="mb-3">
-        <label>@Localizer["Category"]:</label>
-        <div>
-            <select class="form-select" @bind="AcademicProgramDTO.CategoryID">
-                <option value="0">@Localizer["EnterCategory"]</option>
-                @if (categories is not null)
-                {
-                    @foreach (var category in categories)
-                    {
-                        <option value="@category.CategoryID">@category.Name</option>
-                    }
-                }
-            </select>
-            <ValidationMessage For="@(() => AcademicProgramDTO.CategoryID)" />
-        </div>
-    </div>
 
-    <div class="mb-3">
-        <label>@Localizer["Institution"]:</label>
-        <div>
-            <select class="form-select" @bind="AcademicProgramDTO.InstitutionID">
-                <option value="0">@Localizer["SelectAnInstitution"]</option>
-                @if (institutions is not null)
-                {
-                    @foreach (var institution in institutions)
-                    {
-                        <option value="@institution.InstitutionID">@institution.Name</option>
-                    }
-                }
-            </select>
-            <ValidationMessage For="@(() => AcademicProgramDTO.InstitutionID)" />
-        </div>
-    </div>
 
-    <div class="mb-3">
-        <label>@Localizer["AcademicProgram"]:</label>
-        <div>
-            <InputText class="form-control"
-                       @bind-Value="@AcademicProgramDTO.Name"
-                       placeholder="@Localizer["EnterAcademicProgramName"]" />
-            <ValidationMessage For="@(() => AcademicProgramDTO.Name)" />
-        </div>
-    </div>
+    <!-- Campo para la Academic Program -->
+    <MudTextField Label="@Localizer["AcademicProgram"]"
+                  Placeholder="@Localizer["EnterAcademicProgramName"]"
+                  @bind-Value="@AcademicProgramDTO.Name"
+                  For="@(() => AcademicProgramDTO.Name)"
+                  Class="mb-4" />
 
 
 
-@*     <div class="mb-3">
-        <InputImg Label=@Localizer["Image"] ImageSelected="ImageSelected" ImageURL="@imageUrl" />
-    </div> *@
+    <!-- Campo para la Category -->
+    <MudSelect T="int" Label="@(Localizer["Category"])"
+               @bind-Value="AcademicProgramDTO.CategoryID"
+               ToStringFunc="(id) => categories?.FirstOrDefault(c => c.CategoryID == id)?.Name ?? string.Empty"
+               ConvertFunc="(name) => categories?.FirstOrDefault(c => c.Name == name)?.CategoryID ?? 0"
+               Required="true"
+               Class="mb-4"
+               Placeholder="@Localizer["EnterCategory"]">       
+        @if (categories is not null)
+        {
+            @foreach (var category in categories)
+            {
+                <MudSelectItem T="int" Value="@category.CategoryID">@category.Name</MudSelectItem>
+            }
+        }
+    </MudSelect>
+    <ValidationMessage For="@(() => AcademicProgramDTO.CategoryID)" />
+
+     
+
+    <!-- Campo para la Institution -->
+    <MudSelect T="int" Label="@(Localizer["Institution"])"
+               @bind-Value="AcademicProgramDTO.InstitutionID"
+               ToStringFunc="(id) => institutions?.FirstOrDefault(i => i.InstitutionID == id)?.Name ?? string.Empty"
+               ConvertFunc="(name) => institutions?.FirstOrDefault(i => i.Name == name)?.InstitutionID ?? 0"
+               Required="true"
+               Class="mb-4"
+               Placeholder="@Localizer["SelectAnInstitution"]">       
+        @if (institutions is not null)
+        {
+            @foreach (var institution in institutions)
+            {
+                <MudSelectItem T="int" Value="@institution.InstitutionID">@institution.Name</MudSelectItem>
+            }
+        }
+    </MudSelect>
+    <ValidationMessage For="@(() => AcademicProgramDTO.InstitutionID)" />
 
 
-    <button class="btn btn-primary" type="submit">@Localizer["SaveChanges"]</button>
-    <button class="btn btn-success" @onclick="ReturnAction">@Localizer["Return"]</button>
+
+  
+
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.ArrowBack"
+               Color="Color.Info"
+               OnClick="ReturnAction">
+        @Localizer["Return"]
+    </MudButton>
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.Check"
+               Color="Color.Primary"
+               ButtonType="ButtonType.Submit">
+        @Localizer["SaveChanges"]
+    </MudButton>
 </EditForm>
-

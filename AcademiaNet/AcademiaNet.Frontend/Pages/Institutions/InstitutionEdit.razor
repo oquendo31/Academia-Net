@@ -1,14 +1,18 @@
 ﻿@page "/institutions/edit/{Id:int}"
 
-<h3>@Localizer["Edit"] @Localizer["Institution"]</h3>
-
 @if (institutionDTO is null)
 {
-    <Loading />
+    <Loading/>
 }
 else
 {
-    <InstitutionForm @ref="institutionForm" InstitutionDTO="institutionDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
+    <MudDialog>
+        <DialogContent>
+            <InstitutionForm @ref="institutionForm" InstitutionDTO="institutionDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
 }
+
+
 
 

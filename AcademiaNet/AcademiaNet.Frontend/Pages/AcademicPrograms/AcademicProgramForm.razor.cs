@@ -32,7 +32,7 @@ public partial class AcademicProgramForm
 
     private List<Institution>? institutions;
     private List<Category>? categories;
-    private string? imageUrl;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -40,15 +40,7 @@ public partial class AcademicProgramForm
         await LoadInstcategoriesAsync();   // Asegúrate de usar await aquí
     }
 
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-        //if (!string.IsNullOrEmpty(AcademicProgramDTO.Image))
-        //{
-        //    imageUrl = AcademicProgramDTO.Image;
-        //    AcademicProgramDTO.Image = null;
-        //}
-    }
+
 
     private async Task LoadInstitutionsAsync()
     {
@@ -76,11 +68,6 @@ public partial class AcademicProgramForm
         categories = responseHttp.Response;
     }
 
-    //private void ImageSelected(string imagenBase64)
-    //{
-    //    AcademicProgramDTO.Image = imagenBase64;
-    //    imageUrl = null;
-    //}
 
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
     {

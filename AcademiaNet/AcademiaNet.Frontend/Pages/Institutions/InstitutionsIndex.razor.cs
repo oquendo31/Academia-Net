@@ -117,6 +117,11 @@ public partial class InstitutionsIndex
         }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="institution"></param>
+    /// <returns></returns>
     private async Task DeleteAsync(Institution institution)
     {
         var parameters = new DialogParameters
@@ -136,7 +141,7 @@ public partial class InstitutionsIndex
         {
             if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
             {
-                NavigationManager.NavigateTo("/countries");
+                NavigationManager.NavigateTo("/institutions");
             }
             else
             {

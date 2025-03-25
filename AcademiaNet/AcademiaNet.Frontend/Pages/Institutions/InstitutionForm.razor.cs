@@ -17,6 +17,9 @@ public partial class InstitutionForm
 
     private List<Location>? locations;
 
+    private string? imageUrl;
+    private string? shapeImageMessage;
+
     protected override void OnInitialized()
     {
         editContext = new(InstitutionDTO);
@@ -35,12 +38,30 @@ public partial class InstitutionForm
 
     [Inject] private IRepository Repository { get; set; } = null!;
 
-    private string? imageUrl;
-
     protected override async Task OnInitializedAsync()
     {
-        await LoadInstitutionsAsync();
+        await LoadLocationsAsync();
+
     }
+
+
+
+    //protected override void OnParametersSet()
+    //{
+    //    base.OnParametersSet();
+    //    if (!string.IsNullOrEmpty(InstitutionDTO.Photo))
+    //    {
+    //        imageUrl = InstitutionDTO.Photo;
+    //        InstitutionDTO.Photo = null;
+    //    }
+    //    shapeImageMessage = InstitutionDTO.IsImageSquare ? Localizer["ImageIsSquare"] : Localizer["ImageIsRectangular"];
+    //}
+
+    //private void OnToggledChanged(bool toggled)
+    //{
+    //    InstitutionDTO.IsImageSquare = toggled;
+    //    shapeImageMessage = InstitutionDTO.IsImageSquare ? Localizer["ImageIsSquare"] : Localizer["ImageIsRectangular"];
+    //}
 
     protected override void OnParametersSet()
     {
@@ -56,7 +77,7 @@ public partial class InstitutionForm
     /// Trae la lista de las ubicaciones
     /// </summary>
     /// <returns></returns>
-    private async Task LoadInstitutionsAsync()
+    private async Task LoadLocationsAsync()
     {
         var responseHttp = await Repository.GetAsync<List<Location>>("/api/institutions/comboLocations");
         if (responseHttp.Error)

@@ -45,7 +45,7 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
     {
         var academicprogram = await _context.AcademicPrograms
                  .Include(x => x.Institution)
-                 .FirstOrDefaultAsync(c => c.InstitutionID == id);
+                 .FirstOrDefaultAsync(c => c.AcademicProgramID == id);
 
         if (academicprogram == null)
         {
@@ -213,12 +213,14 @@ public class AcademicProgramRepository : GenericRepository<AcademicProgram>, IAc
     public override async Task<ActionResponse<IEnumerable<AcademicProgram>>> GetAsync(PaginationDTO pagination)
     {
         var queryable = _context.AcademicPrograms
+            .Include(x => x.Category)
             .Include(x => x.Institution)
             .AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(pagination.Filter))
         {
-            queryable = queryable.Where(x => x.Institution!.Name.ToLower().Contains(pagination.Filter.ToLower()));
+            //queryable = queryable.Where(x => x.Institution!.Name.ToLower().Contains(pagination.Filter.ToLower()));
+            queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
         }
 
         return new ActionResponse<IEnumerable<AcademicProgram>>

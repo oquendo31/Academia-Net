@@ -1,15 +1,15 @@
 ﻿@page "/academicPrograms/edit/{Id:int}"
 
-<h3>@Localizer["Edit"] @Localizer["AcademicProgram"]</h3>
 
 @if (academicProgramDTO is null)
 {
-    <Loading />
+    <Loading/>
 }
 else
 {
-    <AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
+    <MudDialog>
+        <DialogContent>
+            <AcademicProgramForm @ref="academicProgramForm" AcademicProgramDTO="academicProgramDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
 }
-
-
-
