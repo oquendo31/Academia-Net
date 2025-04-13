@@ -1,6 +1,5 @@
 ﻿using AcademiaNet.Shared.Resources;
 using System.ComponentModel.DataAnnotations;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AcademiaNet.Shared.Entites;
 
@@ -27,10 +26,13 @@ public class Institution
     public int LocationID { get; set; }
 
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
-
     public Location? Location { get; set; }  // Navegación
 
     public ICollection<AcademicProgram>? AcademicPrograms { get; set; }
 
     public int AcademicProgramsCount => AcademicPrograms == null ? 0 : AcademicPrograms.Count;
+
+    public ICollection<User>? Users { get; set; }
+
+    public int UsersCount => Users == null ? 0 : Users.Count;
 }
