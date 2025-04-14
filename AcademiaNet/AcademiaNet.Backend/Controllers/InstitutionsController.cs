@@ -6,10 +6,13 @@ using AcademiaNet.Backend.UnitsOfWork.Interfaces;
 using System.Diagnostics.Metrics;
 using AcademiaNet.Backend.UnitsOfWork.Implementations;
 using AcademiaNet.Shared.DTOs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AcademiaNet.Backend.Controllers;
 
 [ApiController]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [Route("api/[controller]")]
 public class InstitutionsController : GenericController<Institution>
 {

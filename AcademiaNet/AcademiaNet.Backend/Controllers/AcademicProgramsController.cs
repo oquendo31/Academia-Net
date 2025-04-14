@@ -2,11 +2,14 @@
 using AcademiaNet.Backend.UnitsOfWork.Interfaces;
 using AcademiaNet.Shared.DTOs;
 using AcademiaNet.Shared.Entites;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiaNet.Backend.Controllers;
 
 [ApiController]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [Route("api/[controller]")]
 public class AcademicProgramsController : GenericController<AcademicProgram>
 {

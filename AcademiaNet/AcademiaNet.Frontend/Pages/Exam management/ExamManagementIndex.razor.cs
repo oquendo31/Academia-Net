@@ -1,9 +1,11 @@
 using MudBlazor;
 using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AcademiaNet.Frontend.Pages.Exam_management;
 
+[Authorize(Roles = "Admin")]
 public partial class ExamManagementIndex
 {
     private bool success;

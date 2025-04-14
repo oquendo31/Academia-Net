@@ -3,6 +3,7 @@ using AcademiaNet.Frontend.Shared;
 using AcademiaNet.Shared.Entites;
 using AcademiaNet.Shared.Resources;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
@@ -11,6 +12,7 @@ using System.Net;
 
 namespace AcademiaNet.Frontend.Pages.Institutions;
 
+[Authorize(Roles = "Admin")]
 public partial class InstitutionsIndex
 {
     private List<Institution>? Institutions { get; set; }

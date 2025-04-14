@@ -4,21 +4,28 @@
         @Localizer["Home"]
     </MudNavLink>
     <MudDivider />
+
+        <AuthorizeView Roles="Admin">
+           <Authorized>
     
-    <MudNavLink Href="/institutions" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Apartment">
-        @Localizer["Institutions"]
-    </MudNavLink>
-    <MudDivider />
+                <MudNavLink Href="/institutions" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Apartment">
+                    @Localizer["Institutions"]
+                </MudNavLink>
+                <MudDivider />
     
-    <MudNavLink Href="/academicPrograms" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.School">
-        @Localizer["AcademicPrograms"]
-    </MudNavLink>
-    <MudDivider />
+                <MudNavLink Href="/academicPrograms" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.School">
+                    @Localizer["AcademicPrograms"]
+                </MudNavLink>
+                <MudDivider />
     
-    <MudNavLink Href="/examManagements" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Assignment">
-        @Localizer["ExamManagement"]
-    </MudNavLink>
-    <MudDivider />
+                <MudNavLink Href="/examManagements" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Assignment">
+                    @Localizer["ExamManagement"]
+                </MudNavLink>
+                <MudDivider/>
+
+           </Authorized>
+       </AuthorizeView>
+
     
     <MudNavLink Href="/about" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Info">
         @Localizer["About"]

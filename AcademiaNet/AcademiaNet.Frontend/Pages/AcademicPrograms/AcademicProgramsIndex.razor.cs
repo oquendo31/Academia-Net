@@ -9,9 +9,11 @@ using MudBlazor;
 using static MudBlazor.Colors;
 using System.Net;
 using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AcademiaNet.Frontend.Pages.AcademicPrograms;
 
+[Authorize(Roles = "Admin")]
 public partial class AcademicProgramsIndex
 {
     private List<AcademicProgram>? AcademicPrograms { get; set; }
