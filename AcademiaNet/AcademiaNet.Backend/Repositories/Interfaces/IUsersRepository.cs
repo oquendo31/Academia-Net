@@ -57,4 +57,26 @@ public interface IUsersRepository
     /// <returns></returns>
 
     Task LogoutAsync();
+
+    /// <summary>
+    /// Get User Async
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task<User> GetUserAsync(Guid userId);
+
+    /// <summary>
+    /// Generate Email Confirmation Token Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+    /// <summary>
+    /// Confirm Email Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    Task<IdentityResult> ConfirmEmailAsync(User user, string token);
 }

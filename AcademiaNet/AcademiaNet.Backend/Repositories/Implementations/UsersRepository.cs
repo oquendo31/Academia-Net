@@ -103,4 +103,38 @@ public class UsersRepository : IUsersRepository
     {
         await _signInManager.SignOutAsync();
     }
+
+    /// <summary>
+    /// Get User Async
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<User> GetUserAsync(Guid userId)
+    {
+        var user = await _context.Users
+            .Include(u => u.Institution)
+            .FirstOrDefaultAsync(x => x.Id == userId.ToString());
+        return user!;
+    }
+
+    /// <summary>
+    /// Generate Email Confirmation Token Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
+    {
+        return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+    }
+
+    /// <summary>
+    /// Confirm Email Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
+    {
+        return await _userManager.ConfirmEmailAsync(user, token);
+    }
 }

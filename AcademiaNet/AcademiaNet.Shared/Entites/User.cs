@@ -24,6 +24,7 @@ public class User : IdentityUser
     [Display(Name = "UserType", ResourceType = typeof(Literals))]
     public UserType UserType { get; set; }
 
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public Institution Institution { get; set; } = null!;
 
     [Display(Name = "Institution", ResourceType = typeof(Literals))]

@@ -65,4 +65,26 @@ public class UsersUnitOfWork : IUsersUnitOfWork
     /// </summary>
     /// <returns></returns>
     public async Task LogoutAsync() => await _usersRepository.LogoutAsync();
+
+    /// <summary>
+    /// Get User Async
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<User> GetUserAsync(Guid userId) => await _usersRepository.GetUserAsync(userId);
+
+    /// <summary>
+    /// Generate Email Confirmation Token Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public async Task<string> GenerateEmailConfirmationTokenAsync(User user) => await _usersRepository.GenerateEmailConfirmationTokenAsync(user);
+
+    /// <summary>
+    /// Confirm Email Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> ConfirmEmailAsync(User user, string token) => await _usersRepository.ConfirmEmailAsync(user, token);
 }

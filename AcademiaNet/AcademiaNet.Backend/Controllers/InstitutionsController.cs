@@ -55,9 +55,11 @@ public class InstitutionsController : GenericController<Institution>
     }
 
     /// <summary>
-    ///
+    /// Get Combo Async
     /// </summary>
     /// <returns></returns>
+    ///
+    [AllowAnonymous]
     [HttpGet("combo")]
     public async Task<IActionResult> GetComboAsync()
     {

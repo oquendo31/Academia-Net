@@ -130,4 +130,15 @@ public class Repository : IRepository
         }
         return new HttpResponseWrapper<TActionResponse>(default, true, responseHttp);
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
+    public async Task<HttpResponseWrapper<object>> GetAsync(string url)
+    {
+        var responseHTTP = await _httpClient.GetAsync(url);
+        return new HttpResponseWrapper<object>(null, !responseHTTP.IsSuccessStatusCode, responseHTTP);
+    }
 }
