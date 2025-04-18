@@ -103,4 +103,20 @@ public class UsersUnitOfWork : IUsersUnitOfWork
     /// <param name="user"></param>
     /// <returns></returns>
     public async Task<IdentityResult> UpdateUserAsync(User user) => await _usersRepository.UpdateUserAsync(user);
+
+    /// <summary>
+    /// Generate Password Reset Token Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public async Task<string> GeneratePasswordResetTokenAsync(User user) => await _usersRepository.GeneratePasswordResetTokenAsync(user);
+
+    /// <summary>
+    /// Reset Password Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="token"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password) => await _usersRepository.ResetPasswordAsync(user, token, password);
 }

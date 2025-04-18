@@ -95,4 +95,20 @@ public interface IUsersRepository
     /// <param name="user"></param>
     /// <returns></returns>
     Task<IdentityResult> UpdateUserAsync(User user);
+
+    /// <summary>
+    /// Generate Password Reset Token Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    Task<string> GeneratePasswordResetTokenAsync(User user);
+
+    /// <summary>
+    /// Reset Password Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="token"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
 }

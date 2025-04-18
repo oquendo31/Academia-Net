@@ -159,4 +159,26 @@ public class UsersRepository : IUsersRepository
     {
         return await _userManager.UpdateAsync(user);
     }
+
+    /// <summary>
+    /// Generate Password Reset Token Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public async Task<string> GeneratePasswordResetTokenAsync(User user)
+    {
+        return await _userManager.GeneratePasswordResetTokenAsync(user);
+    }
+
+    /// <summary>
+    /// Reset Password Async
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="token"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password)
+    {
+        return await _userManager.ResetPasswordAsync(user, token, password);
+    }
 }
