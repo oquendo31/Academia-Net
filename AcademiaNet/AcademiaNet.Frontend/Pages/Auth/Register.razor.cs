@@ -15,7 +15,7 @@ namespace AcademiaNet.Frontend.Pages.Auth;
 public partial class Register
 {
     private UserDTO userDTO = new();
-    private List<Institution>? countries;
+    private List<Institution>? institutions;
     private bool loading;
     private string? imageUrl;
     private string? titleLabel;
@@ -57,23 +57,23 @@ public partial class Register
             Snackbar.Add(Localizer[message!], Severity.Error);
             return;
         }
-        countries = responseHttp.Response;
+        institutions = responseHttp.Response;
     }
 
-    private void CountryChanged(Institution country)
+    private void InstitutionChanged(Institution institution)
     {
-        selectedInstitution = country;
+        selectedInstitution = institution;
     }
 
-    private async Task<IEnumerable<Institution>> SearchCountries(string searchText, CancellationToken cancellationToken)
+    private async Task<IEnumerable<Institution>> SearchInstitutions(string searchText, CancellationToken cancellationToken)
     {
         await Task.Delay(5);
         if (string.IsNullOrWhiteSpace(searchText))
         {
-            return countries!;
+            return institutions!;
         }
 
-        return countries!
+        return institutions!
             .Where(c => c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
             .ToList();
     }
@@ -92,8 +92,8 @@ public partial class Register
 
         userDTO.UserType = UserType.User;
         userDTO.UserName = userDTO.Email;
-        userDTO.Institution = selectedInstitution;
-        userDTO.InstitutionID = selectedInstitution.InstitutionID;
+        //userDTO.Institution = selectedInstitution;
+        userDTO.InstitutionID = userDTO.InstitutionID;
         userDTO.Language = System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2);
 
         if (IsAdmin)
@@ -158,11 +158,16 @@ public partial class Register
             Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["PasswordConfirm"])), Severity.Error);
             hasErrors = true;
         }
-        if (selectedInstitution.InstitutionID == 0)
+        if (userDTO.InstitutionID == 0)
         {
-            Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["Country"])), Severity.Error);
+            Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["Institution"])), Severity.Error);
             hasErrors = true;
         }
+        //if (selectedInstitution.InstitutionID == 0)
+        //{
+        //    Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["Institution"])), Severity.Error);
+        //    hasErrors = true;
+        //}
 
         return !hasErrors;
     }

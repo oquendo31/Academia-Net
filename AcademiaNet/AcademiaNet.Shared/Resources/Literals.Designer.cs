@@ -547,6 +547,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mail forwarding.
+        /// </summary>
+        public static string MailForwarding {
+            get {
+                return ResourceManager.GetString("MailForwarding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field {0} cannot be longer than {1} characters..
         /// </summary>
         public static string MaxLength {
@@ -727,6 +736,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resend account activation email.
+        /// </summary>
+        public static string ResendAccountActivationEmail {
+            get {
+                return ResourceManager.GetString("ResendAccountActivationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Return.
         /// </summary>
         public static string Return {
@@ -768,6 +786,15 @@ namespace AcademiaNet.Shared.Resources {
         public static string SelectFile {
             get {
                 return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
             }
         }
         

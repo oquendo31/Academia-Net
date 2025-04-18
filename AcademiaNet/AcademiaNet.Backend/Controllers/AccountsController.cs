@@ -104,7 +104,7 @@ public class AccountsController : ControllerBase
                 new("FirstName", user.FirstName),
                 new("LastName", user.LastName),
                 new("Photo", user.Photo ?? string.Empty),
-                new("InstitutionID", user.Institution.InstitutionID.ToString())
+                new("InstitutionID", user.Institution!.InstitutionID.ToString())
             };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtKey"]!));
@@ -169,5 +169,28 @@ public class AccountsController : ControllerBase
         }
 
         return NoContent();
+    }
+
+    /// <summary>
+    ///Resed Token Async
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    [HttpPost("ResedToken")]
+    public async Task<IActionResult> ResedTokenAsync([FromBody] EmailDTO model)
+    {
+        var user = await _usersUnitOfWork.GetUserAsync(model.Email);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var response = await SendConfirmationEmailAsync(user, model.Language);
+        if (response.WasSuccess)
+        {
+            return NoContent();
+        }
+
+        return BadRequest(response.Message);
     }
 }

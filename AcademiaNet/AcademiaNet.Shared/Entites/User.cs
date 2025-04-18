@@ -24,9 +24,11 @@ public class User : IdentityUser
     [Display(Name = "UserType", ResourceType = typeof(Literals))]
     public UserType UserType { get; set; }
 
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
-    public Institution Institution { get; set; } = null!;
+    //public Institution Institution { get; set; } = null!;
+    public Institution? Institution { get; set; }
 
+
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     [Display(Name = "Institution", ResourceType = typeof(Literals))]
     [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public int InstitutionID { get; set; }
