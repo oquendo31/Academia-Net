@@ -78,4 +78,20 @@ public interface IUsersUnitOfWork
     /// <param name="token"></param>
     /// <returns></returns>
     Task<IdentityResult> ConfirmEmailAsync(User user, string token);
+
+    /// <summary>
+    /// Change PasswordAsync
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="currentPassword"></param>
+    /// <param name="newPassword"></param>
+    /// <returns></returns>
+    Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword);
+
+    /// <summary>
+    /// Update UserAsync
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    Task<IdentityResult> UpdateUserAsync(User user);
 }

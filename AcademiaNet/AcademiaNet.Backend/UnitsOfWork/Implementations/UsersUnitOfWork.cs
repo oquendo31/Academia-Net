@@ -87,4 +87,20 @@ public class UsersUnitOfWork : IUsersUnitOfWork
     /// <param name="token"></param>
     /// <returns></returns>
     public async Task<IdentityResult> ConfirmEmailAsync(User user, string token) => await _usersRepository.ConfirmEmailAsync(user, token);
+
+    /// <summary>
+    /// Change PasswordAsync
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="currentPassword"></param>
+    /// <param name="newPassword"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword) => await _usersRepository.ChangePasswordAsync(user, currentPassword, newPassword);
+
+    /// <summary>
+    /// Update UserAsync
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> UpdateUserAsync(User user) => await _usersRepository.UpdateUserAsync(user);
 }

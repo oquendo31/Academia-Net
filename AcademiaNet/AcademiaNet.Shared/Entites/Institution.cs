@@ -23,9 +23,9 @@ public class Institution
 
     public string ImageFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
 
+    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public int LocationID { get; set; }
 
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
     public Location? Location { get; set; }  // Navegación
 
     public ICollection<AcademicProgram>? AcademicPrograms { get; set; }

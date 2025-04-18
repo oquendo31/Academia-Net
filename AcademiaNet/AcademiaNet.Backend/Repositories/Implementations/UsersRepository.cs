@@ -137,4 +137,26 @@ public class UsersRepository : IUsersRepository
     {
         return await _userManager.ConfirmEmailAsync(user, token);
     }
+
+    /// <summary>
+    ///Change PasswordAsync
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="currentPassword"></param>
+    /// <param name="newPassword"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword)
+    {
+        return await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+    }
+
+    /// <summary>
+    ///Update UserAsync
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public async Task<IdentityResult> UpdateUserAsync(User user)
+    {
+        return await _userManager.UpdateAsync(user);
+    }
 }
