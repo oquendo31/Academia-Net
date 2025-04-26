@@ -76,6 +76,9 @@ builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
 builder.Services.AddScoped<IExamsRepository, ExamsRepository>();
 builder.Services.AddScoped<IExamsUnitOfWorks, ExamsUnitOfWork>();
 
+builder.Services.AddScoped<IEnrollmentPeriodsRepository, EnrollmentPeriodsRepository>();
+builder.Services.AddScoped<IEnrollmentPeriodsUnitOfWorks, EnrollmentPeriodsUnitOfWorks>();
+
 builder.Services.AddIdentity<User, IdentityRole>(x =>
 {
     x.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
