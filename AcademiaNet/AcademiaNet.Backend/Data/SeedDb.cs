@@ -34,6 +34,14 @@ public class SeedDb
         await CheckInstitutionsImagesAsync();
         await CheckRolesAsync();
         await CheckUserAsync("Juan", "Oquendo", "felipeoquendo@hotmail.com", "322 509 9025", UserType.Admin);
+
+        await CheckEnrollmentPeriodsAsync();
+
+        await CheckExamsAsync();
+        //await CheckEnrollmentAsync();
+        //await CheckExamResultAsync();
+        //await CheckNotificationAsync();
+        //await CheckPeriodAcademicProgramsAsync();
     }
 
     /// <summary>
@@ -185,5 +193,83 @@ public class SeedDb
         }
 
         return user;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    private async Task CheckEnrollmentPeriodsAsync()
+    {
+        if (!_context.EnrollmentPeriods.Any())
+        {
+            var enrollmentPeriodsSQLScript = File.ReadAllText("Data\\EnrollmentPeriods.sql");
+            await _context.Database.ExecuteSqlRawAsync(enrollmentPeriodsSQLScript);
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    private async Task CheckExamsAsync()
+    {
+        if (!_context.Exams.Any())
+        {
+            var examsSQLScript = File.ReadAllText("Data\\Exams.sql");
+            await _context.Database.ExecuteSqlRawAsync(examsSQLScript);
+        }
+    }
+
+    /// <summary>
+    /// ----------------------------------------?
+    /// </summary>
+    /// <returns></returns>
+    private async Task CheckEnrollmentAsync()
+    {
+        if (!_context.Enrollments.Any())
+        {
+            var enrollmentSQLScript = File.ReadAllText("Data\\Enrollments.sql");
+            await _context.Database.ExecuteSqlRawAsync(enrollmentSQLScript);
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    private async Task CheckExamResultAsync()
+    {
+        if (!_context.ExamResults.Any())
+        {
+            var examResultsSQLScript = File.ReadAllText("Data\\ExamResults.sql");
+            await _context.Database.ExecuteSqlRawAsync(examResultsSQLScript);
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    private async Task CheckNotificationAsync()
+    {
+        if (!_context.Notifications.Any())
+        {
+            var notificationsSQLScript = File.ReadAllText("Data\\Notifications.sql");
+            await _context.Database.ExecuteSqlRawAsync(notificationsSQLScript);
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    private async Task CheckPeriodAcademicProgramsAsync()
+    {
+        if (!_context.PeriodAcademicPrograms.Any())
+        {
+            var periodAcademicProgramsSQLScript = File.ReadAllText("Data\\PeriodAcademicPrograms.sql");
+            await _context.Database.ExecuteSqlRawAsync(periodAcademicProgramsSQLScript);
+        }
     }
 }
