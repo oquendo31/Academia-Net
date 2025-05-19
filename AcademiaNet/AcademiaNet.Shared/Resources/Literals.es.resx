@@ -411,4 +411,7 @@
   <data name="ForgottenYourPassword" xml:space="preserve">
     <value>¿Has olvidado tu contraseña?</value>
   </data>
+  <data name="EnrollmentPeriod" xml:space="preserve">
+    <value>Periodos de inscripción</value>
+  </data>
 </root>

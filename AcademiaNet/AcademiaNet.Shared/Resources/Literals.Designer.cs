@@ -286,6 +286,15 @@ namespace AcademiaNet.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enrollment Periods.
+        /// </summary>
+        public static string EnrollmentPeriod {
+            get {
+                return ResourceManager.GetString("EnrollmentPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the academic program name.
         /// </summary>
         public static string EnterAcademicProgramName {
